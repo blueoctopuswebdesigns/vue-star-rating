@@ -74,6 +74,7 @@ The following props can be passed to the component:
 | ------------- | ------------- |-------------|
 | increment  |  The rating increment, for example pass 0.5 for half stars or 0.01 for fluid stars. Expects a number between 0.01 - 1. | 1
 | rating  | The initial rating, this will automatically round to the closest increment, so for the most accurate rating pass 0.01 as increment  | 0 |
+| real-rating | Optional rating you can pass in to display to the right of the stars | null |
 | max-rating  | The maximum rating, this lets `vue-star-rating` know how many stars to display | 5 |
 | inactive-color  | The color of the non-highlighted portion of a star.  | #d8d8d8 |
 | active-color  | The color of the highlighted portion of a star.  | #ffd055 |
@@ -93,6 +94,18 @@ The following props can be passed to the component:
              active-color="#f00" 
              v-bind:star-size="90">
 </star-rating>
+```
+#### Props for displaying stars only
+
+```HTML
+<star-rating
+    :rating="3.5"
+    :real-rating="3.7"
+    star-size="30"
+    read-only="true"
+    increment="0.5"
+    active-color="#FEB148"
+></star-rating>
 ```
 
 ### Reactive Props
