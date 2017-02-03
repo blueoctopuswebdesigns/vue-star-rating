@@ -5,7 +5,7 @@
             <span v-for="n in maxRating" :class="[{pointer: !readOnly }, 'star']">
       <star :fill="fillLevel[n-1]" :size="starSize" :id="n" :step="step" :active-color="activeColor" :inactive-color="inactiveColor" @star-selected="setRating($event, true)" @star-mouse-move="setRating"></star>    
     </span>
-            <span id="rating-text" v-if="showRating" :class="textClass"> {{currentRating}}</span>
+            <span id="rating-text" v-if="showRating" :class="textClass"> {{ratingToShow}}</span>
         </div>
 
     </div>
@@ -23,6 +23,9 @@ export default {
         },
         rating: {
             default: 0
+        },
+        realRating: {
+            default: null
         },
         activeColor: {
             default: "#ffd055"
@@ -51,6 +54,15 @@ export default {
         this.currentRating = this.rating;
         this.selectedRating = this.rating;
         this.createStars();
+    },
+    computed: {
+        ratingToShow: function() {
+
+            if(this.realRating != null) {
+                return this.realRating;
+            }
+            return this.currentRating;
+        }
     },
     methods: {
         setRating($event, persist) {
